@@ -1,0 +1,12 @@
+{
+  "name": "Home.InfoPoint aber in geil",
+  "description": "Home.InfoPoint is halt komisch, deswechen muss man son Addon machen",
+  "version": "1.0",
+  "manifest_version": 3,
+  "content_scripts": [
+    {
+      "matches": ["*://*.homeinfopoint.de/*"],
+      "js": ["homeinfopoint.js"]
+    }
+  ]
+}
