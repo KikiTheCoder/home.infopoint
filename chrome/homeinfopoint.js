@@ -1,85 +1,64 @@
 console.log("------ HomeInfoPoint Extras Initialized ------");
 
-var t1 = document.getElementsByClassName("t02")
+var tables = document.getElementsByClassName("t02")
 
-console.log(t1)
+var h3s = document.querySelectorAll("h3")
 
-var sum = 0;
+//15 Fächer
+
 var grades = []
-var grade1 = 0
-var grade2 = 0
-var grade3 = 0
-var grade4 = 0
-var grade5 = 0
-var grade6 = 0
+var subjects = []
 
-for (var table of t1) {
-    for (var i = 0, row; row = table.rows[i]; i++) {
-        if (!isNaN(row.childNodes[1].innerText) && row.childNodes[1].innerText) {
-            let grade = parseInt(row.childNodes[1].innerText)
-             /* (grade == 1) {
-                grade1 ++;
-            }else if (grade == 2){
-                grade2 ++;
-            }else if (grade == 3){
-                grade3 ++;
-            }else if (grade == 4){
-                grade4 ++;
-            }else if (grade == 5){
-                grade5 ++;
-            }else if (grade == 6){
-                grade6 ++;
-            } */
 
-            switch (grade) {
-                case 1:
-                    grade1 ++;
-                    break;
-                case 2:
-                    grade2 ++;
-                    break;
-                case 3:
-                    grade3 ++;
-                    break;
-                case 4:
-                    grade4 ++;
-                    break;
-                case 5:
-                    grade5 ++;
-                    break;
-                case 6:
-                    grade6 ++;
-                    break;
-                default:
-                    break;
-            }
-            grades.push(grade)
-            sum = sum + grade
-        }
+//iterate trough all tables
+for(var i = 0; i < 15; i++) {
+    const table = tables[i]
+    grades.push([])
+    subjects.push(h3s[i].innerText)
+
+    //iterate trough all rows
+    for(var j = 1; j < table.rows.length; j++) {
+        const row = table.rows[j]
+
+        //console.log(`Zensur: ${row.children[1].innerText}`);
+        //console.log(`Note: ${row.children[3].innerText}`);
+
+        //push the grade and the weight in the matching place
+        grades[i].push({grade: parseInt(row.children[1].innerText), weight: row.children[3].innerText})
+
     }
 }
 
-console.log(`| Sum: ${sum}`);
-console.log(`| Grades: ${grades}`);
-console.log(`| Average: ${sum/grades.length}`);
-console.log(`-----grade Table-----`)
-console.log(`| 1: ${grade1}       `)
-console.log(`| 2: ${grade2}       `)
-console.log(`| 3: ${grade3}       `)
-console.log(`| 4: ${grade4}       `)
-console.log(`| 5: ${grade5}       `)
-console.log(`| 6: ${grade6}       `)
+var temp_len = 0
+var temp_sum = 0
 
+var perm_len = 0
+var perm_sum = 0
 
+for(var k = 0; k < subjects.length; k++) {
+    console.log(`-- ${subjects[k]}`);
 
-/* for (let item of t1) {
-    for (let item2 of item.childNodes) {
-        for (let item3 of item2.childNodes) {
-            console.log(item3);
-            for (const item4 of item3.childNodes[1]) {
-                console.log(item4);
-            }
+    temp_len = grades[k].length
+    perm_len += grades[k].length
+    
+    for(var l = 0; l < grades[k].length; l++) {
+        //console.log(grades[k][l].grade);
+
+        temp_sum += parseInt(grades[k][l].grade)
+        perm_sum += parseInt(grades[k][l].grade)
+
+        if (grades[k][l].weight.includes("doppelt") ) {
+            perm_len++;
+            temp_len++;
+
+            perm_sum += parseInt(grades[k][l].grade)
+            temp_sum += parseInt(grades[k][l].grade)
         }
     }
+
+    console.log(`Average: ${temp_sum / temp_len} ---`);
+    temp_sum = 0;
+    temp_len = 0;
 }
- */
+
+console.log(`--- Average over-all: ${perm_sum / perm_len}`);
