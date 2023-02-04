@@ -36,8 +36,6 @@ var perm_len = 0
 var perm_sum = 0
 
 for(var k = 0; k < subjects.length; k++) {
-    console.log(`-- ${subjects[k]}`);
-
     temp_len = grades[k].length
     perm_len += grades[k].length
     
@@ -56,9 +54,9 @@ for(var k = 0; k < subjects.length; k++) {
         }
     }
 
-    console.log(`Average: ${temp_sum / temp_len} ---`);
+    console.log(`${subjects[k]} - ${Math.round((temp_sum / temp_len + Number.EPSILON) * 100) / 100}`);
     temp_sum = 0;
     temp_len = 0;
 }
 
-console.log(`--- Average over-all: ${perm_sum / perm_len}`);
+console.log(`Average over-all: ${Math.round((perm_sum / perm_len + Number.EPSILON) * 100) / 100}`);
