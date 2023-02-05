@@ -31,9 +31,11 @@ for(var i = 0; i < 15; i++) {
 
 var temp_len = 0
 var temp_sum = 0
+var temp_avg = 0
 
 var perm_len = 0
 var perm_sum = 0
+var perm_avg = 0
 
 for(var k = 0; k < subjects.length; k++) {
     temp_len = grades[k].length
@@ -54,9 +56,18 @@ for(var k = 0; k < subjects.length; k++) {
         }
     }
 
-    console.log(`${subjects[k]} - ${Math.round((temp_sum / temp_len + Number.EPSILON) * 100) / 100}`);
+    temp_avg = Math.round((temp_sum / temp_len + Number.EPSILON) * 100) / 100
+
+    console.log(`${subjects[k]} - ${temp_avg}`);
+    h3s[k].innerText += ` - Ø${temp_avg}`
+
     temp_sum = 0;
     temp_len = 0;
 }
 
-console.log(`Average over-all: ${Math.round((perm_sum / perm_len + Number.EPSILON) * 100) / 100}`);
+perm_avg = Math.round((perm_sum / perm_len + Number.EPSILON) * 100) / 100
+
+console.log(`Average over-all: ${perm_avg}`);
+
+const space = document.getElementsByTagName("h2")[1]
+space.innerHTML = `<h2>Ø ${perm_avg}</h2><br/>`

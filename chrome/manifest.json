@@ -8,5 +8,8 @@
       "matches": ["*://*.homeinfopoint.de/*"],
       "js": ["homeinfopoint.js"]
     }
-  ]
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
 }
