@@ -1,15 +1,12 @@
 {
-  "name": "Home.InfoPoint aber in geil",
-  "description": "Home.InfoPoint is halt komisch, deswechen muss man son Addon machen",
-  "version": "1.0",
+  "name": "Home.InfoPoint Enhancer",
+  "description": "Calculates the averages of your subjects and the over-all average.",
+  "version": "2023.2.3",
   "manifest_version": 3,
   "content_scripts": [
     {
       "matches": ["*://*.homeinfopoint.de/*"],
       "js": ["homeinfopoint.js"]
     }
-  ],
-  "action": {
-    "default_popup": "popup.html"
-  }
+  ]
 }
