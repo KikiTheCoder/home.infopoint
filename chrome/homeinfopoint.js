@@ -11,6 +11,7 @@ var subjects = []
 
 
 //iterate trough all tables
+// capped at 15 - number of subjects
 for(var i = 0; i < 15; i++) {
     const table = tables[i]
     grades.push([])
